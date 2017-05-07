@@ -21,10 +21,15 @@ class BankController < Sinatra::Base
 
   get "/:account" do |account|
     @account = account
-    #resp = Excon.get "https://localhost:8080/balance/#{account}"
-    #data = JSON.parse resp.body
-    #@balance = data["balance"]
-    @balance = 1234
+    resp = Excon.get "https://localhost:3000/balance/#{account}"
+    data = JSON.parse resp.body
+    @balance = data["balance"]
+
+    #Kafka.stream_messages("balance") do
+    #  next if msg[:account] != @account
+    #  @balance = msg[:balance]
+    #end
+    #@balance = 1234
     haml :account
   end
 
