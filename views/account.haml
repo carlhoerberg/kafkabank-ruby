@@ -1,0 +1,37 @@
+#masterhead
+  .inner
+    .container
+      .row
+        .col-md-7
+          %h1
+            KafkaBank
+          %p
+            The simple way to send money to anyone
+          %p
+            Banking powered by Apache Kafka
+        .col-md-2
+          %img{:src => '/images/elephant_256.png', :alt => 'KafkaBank' }
+.container
+  %section
+    .row
+      .col-md-4
+        %h3 Account Summary 
+        %p
+          Logged in as :name 
+        %p
+          Create a new transaction
+            %form{method: :post, action: "action"}
+              .form-group
+                %input.form-control{:placeholder => "Franz", :type => "text", :account => "account", :required => ""}/
+              .form-group
+                %input.form-control{:placeholder => "$10", :type => "text", :account => "account", :required => ""}/
+              .form-group
+                %input.form-control{:placeholder => "Thaks for the coffee", :type => "text", :account => "account", :required => ""}/
+              .form-group
+                %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
+
+      .col-md-4
+        %h3 Reliability
+        %p
+          Super reliable transactions
+.container
