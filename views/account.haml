@@ -21,7 +21,7 @@
           =@account 
         %p
           Create a new transaction
-            %form{method: :post, action: "action"}
+            %form{method: :post, action: "/#{@account}/send"}
               .form-group
                 %input.form-control{:placeholder => "Franz", :type => "text", :name => "receiver", :required => ""}/
               .form-group
