@@ -2,4 +2,5 @@ source "https://rubygems.org"
 
 gem "sinatra"
 gem "haml"
-gem "hermann"
+gem "puma"
+gem "ruby-kafka"
