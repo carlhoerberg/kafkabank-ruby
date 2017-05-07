@@ -12,7 +12,7 @@ class BankController < Sinatra::Base
   end
 
   get "/" do
-    haml :login
+    haml :index
   end
 
   post "/" do
