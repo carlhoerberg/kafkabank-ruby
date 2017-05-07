@@ -1,0 +1,35 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    haml (5.0.1)
+      temple (>= 0.8.0)
+      tilt
+    hermann (0.27.0.0)
+      json (~> 1.8.2)
+      mini_portile (~> 0.6.0)
+      thread_safe (~> 0.3.4)
+    json (1.8.6)
+    mini_portile (0.6.2)
+    mustermann (1.0.0)
+    rack (2.0.1)
+    rack-protection (2.0.0)
+      rack
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    temple (0.8.0)
+    thread_safe (0.3.6)
+    tilt (2.0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  haml
+  hermann
+  sinatra
+
+BUNDLED WITH
+   1.14.6
