@@ -17,21 +17,26 @@
       .col-md-4
         %h3 Account Summary 
         %p
-          Logged in as :name 
+          Logged in as 
+          =@account 
         %p
           Create a new transaction
             %form{method: :post, action: "action"}
               .form-group
-                %input.form-control{:placeholder => "Franz", :type => "text", :account => "account", :required => ""}/
+                %input.form-control{:placeholder => "Franz", :type => "text", :name => "receiver", :required => ""}/
               .form-group
-                %input.form-control{:placeholder => "$10", :type => "text", :account => "account", :required => ""}/
+                %input.form-control{:placeholder => "$10", :type => "number", :name => "amount", :required => ""}/
               .form-group
-                %input.form-control{:placeholder => "Thaks for the coffee", :type => "text", :account => "account", :required => ""}/
+                %input.form-control{:placeholder => "Thaks for the coffee", :type => "text", :name => "message", :required => ""}/
               .form-group
                 %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
-
-      .col-md-4
-        %h3 Reliability
-        %p
-          Super reliable transactions
+        %h4
+          Balance
+          %p
+            My current balance: 
+            =@balance
+        %h4
+          Previous transactions
+          %p 
+            Historical account events
 .container
