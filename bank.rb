@@ -9,6 +9,7 @@ class BankController < Sinatra::Base
       seed_brokers: ["localhost:9092"],
       client_id: "kafkabank-ruby",
     )
+    BACKEND = ENV.fetch("BACKEND", "http://localhost:3000")
   end
 
   get "/" do
@@ -43,7 +44,7 @@ class BankController < Sinatra::Base
 
   helpers do
     def balance(account)
-      resp = Excon.get "http://localhost:3000/balance/#{account}"
+      resp = Excon.get "#{BACKEND}/balance/#{account}"
       data = JSON.parse resp.body
       data["balance"]
     rescue Excon::Error => e
