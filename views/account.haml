@@ -24,9 +24,9 @@
             .form-group
               %input.form-control{:placeholder => "Franz", :type => "text", :name => "receiver", :required => ""}/
             .form-group
-              %input.form-control{:placeholder => "$10", :type => "number", :name => "amount", :required => ""}/
+              %input.form-control{:placeholder => "10", :type => "number", :name => "amount", :required => ""}/
             .form-group
-              %input.form-control{:placeholder => "Thaks for the coffee", :type => "text", :name => "message", :required => ""}/
+              %input.form-control{:placeholder => "Thanks for the coffee!", :type => "text", :name => "message", :required => ""}/
             .form-group
               %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
         %h4
@@ -34,8 +34,4 @@
           %p
             My current balance: 
             =@balance
-        %h4
-          Previous transactions
-          %p 
-            Historical account events
 .container
