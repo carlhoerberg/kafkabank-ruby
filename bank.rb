@@ -4,12 +4,13 @@ require "json"
 require "kafka"
 
 class BankController < Sinatra::Base
+  BACKEND = ENV.fetch("BACKEND", "http://localhost:3000")
+
   configure do
     K = Kafka.new(
       seed_brokers: ["localhost:9092"],
       client_id: "kafkabank-ruby",
     )
-    BACKEND = ENV.fetch("BACKEND", "http://localhost:3000")
   end
 
   get "/" do
