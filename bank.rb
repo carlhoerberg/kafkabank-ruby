@@ -7,12 +7,12 @@ require "kafka"
 
 class BankController < Sinatra::Base
   BACKEND = ENV.fetch("BACKEND", "http://localhost:3000")
-  brokers = ENV['CLOUDKARAFKA_BROKERS'].split(',')
-  topic_prefix = ENV['CLOUDKARAFKA_TOPIC_PREFIX']
+  BROKERS = ENV['CLOUDKARAFKA_BROKERS'].split(',')
+  TOPIC_PREFIX = ENV['CLOUDKARAFKA_TOPIC_PREFIX']
 
   configure do
     K = Kafka.new(
-      seed_brokers: brokers,
+      seed_brokers: BROKERS,
       ssl_ca_cert: ENV['CLOUDKARAFKA_CA'],
       ssl_client_cert: ENV['CLOUDKARAFKA_CERT'],
       ssl_client_cert_key: ENV['CLOUDKARAFKA_PRIVATE_KEY'],
@@ -31,11 +31,6 @@ class BankController < Sinatra::Base
   get "/:account" do |account|
     @account = account
     @balance = balance(account)
-    #Kafka.stream_messages("balance") do
-    #  next if msg[:account] != @account
-    #  @balance = msg[:balance]
-    #end
-    #@balance = 1234
     haml :account
   end
 
@@ -46,7 +41,7 @@ class BankController < Sinatra::Base
       amount: params[:amount].to_f,
       message: params[:message]
     }
-    K.deliver_message(msg.to_json, topic: "#{topic_prefix}transactions")
+    K.deliver_message(msg.to_json, topic: "#{TOPIC_PREFIX}transactions")
     redirect "/#{account}"
   end
 
