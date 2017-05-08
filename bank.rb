@@ -3,10 +3,16 @@ require "excon"
 require "json"
 require "kafka"
 
+# Create an array with the broker host names.
+brokers = ENV['CLOUDKARAFKA_BROKERS'].split(',')
+
 class BankController < Sinatra::Base
   configure do
     K = Kafka.new(
-      seed_brokers: ["localhost:9092"],
+      seed_brokers: brokers,
+      ssl_ca_cert: ENV['CLOUDKARAFKA_CA'],
+      ssl_client_cert: ENV['CLOUDKARAFKA_CERT'],
+      ssl_client_cert_key: ENV['CLOUDKARAFKA_PRIVATE_KEY'],
       client_id: "kafkabank-ruby",
     )
   end
