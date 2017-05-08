@@ -17,11 +17,9 @@
         %p
           Logged in as 
           %strong=@account 
-        %h4
-        Balance
         %p
           My current balance: 
-          =@balance
+          %strong=@balance
         %form.form-horizontal{method: :post, action: "/#{@account}/send"}
           %legend Create a new transaction
           .form-group
