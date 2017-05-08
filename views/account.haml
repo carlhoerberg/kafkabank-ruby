@@ -5,10 +5,9 @@
         .col-md-7
           %h1
             KafkaBank
-          %p
-            The simple way to send money to anyone
-          %p
-            Banking powered by Apache Kafka
+            %small{style:"font-size:40%"}
+              The simple way to send money to anyone
+
         .col-md-2
 .container
   %section
@@ -17,21 +16,26 @@
         %h3 Account Summary 
         %p
           Logged in as 
-          =@account 
-        %p
-          Create a new transaction
-          %form{method: :post, action: "/#{@account}/send"}
-            .form-group
-              %input.form-control{:placeholder => "Franz", :type => "text", :name => "receiver", :required => ""}/
-            .form-group
-              %input.form-control{:placeholder => "10", :type => "number", :name => "amount", :required => ""}/
-            .form-group
-              %input.form-control{:placeholder => "Thanks for the coffee!", :type => "text", :name => "message", :required => ""}/
-            .form-group
-              %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
+          %strong=@account 
         %h4
-          Balance
-          %p
-            My current balance: 
-            =@balance
+        Balance
+        %p
+          My current balance: 
+          =@balance
+        %form.form-horizontal{method: :post, action: "/#{@account}/send"}
+          %legend Create a new transaction
+          .form-group
+            %label To
+            %input.form-control{:placeholder => "Franz", :type => "text", :name => "receiver", :required => ""}/
+          .form-group
+            %label Amount
+            %input.form-control{:placeholder => "10", :type => "number", :name => "amount", :required => ""}/
+          .form-group
+            %label Message
+            %input.form-control{:placeholder => "Thanks for the coffee!", :type => "text", :name => "message", :required => ""}/
+          .form-group
+            %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
+
+        %p
+          Banking powered by Apache Kafka
 .container
