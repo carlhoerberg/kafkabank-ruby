@@ -4,10 +4,11 @@ require "json"
 require "kafka"
 
 # Create an array with the broker host names.
-brokers = ENV['CLOUDKARAFKA_BROKERS'].split(',')
 
 class BankController < Sinatra::Base
   BACKEND = ENV.fetch("BACKEND", "http://localhost:3000")
+  brokers = ENV['CLOUDKARAFKA_BROKERS'].split(',')
+  topic_prefix = ENV['CLOUDKARAFKA_TOPIC_PREFIX']
 
   configure do
     K = Kafka.new(
@@ -45,7 +46,7 @@ class BankController < Sinatra::Base
       amount: params[:amount].to_f,
       message: params[:message]
     }
-    K.deliver_message(msg.to_json, topic: "transactions")
+    K.deliver_message(msg.to_json, topic: "#{topic_prefix}transactions")
     redirect "/#{account}"
   end
 
