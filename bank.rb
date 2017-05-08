@@ -7,6 +7,8 @@ require "kafka"
 brokers = ENV['CLOUDKARAFKA_BROKERS'].split(',')
 
 class BankController < Sinatra::Base
+  BACKEND = ENV.fetch("BACKEND", "http://localhost:3000")
+
   configure do
     K = Kafka.new(
       seed_brokers: brokers,
@@ -49,7 +51,7 @@ class BankController < Sinatra::Base
 
   helpers do
     def balance(account)
-      resp = Excon.get "http://localhost:3000/balance/#{account}"
+      resp = Excon.get "#{BACKEND}/balance/#{account}"
       data = JSON.parse resp.body
       data["balance"]
     rescue Excon::Error => e
