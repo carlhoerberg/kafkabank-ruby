@@ -1,39 +1,36 @@
-#masterhead
-  .inner
-    .container
-      .row
-        .col-md-7
-          %h1
-            KafkaBank
-            %small{style:"font-size:40%"}
-              The simple way to send money to anyone
-
-        .col-md-2
 .container
-  %section
-    .row
-      .col-md-4
-        %h3 Account Summary 
-        %p
-          Logged in as 
-          %strong=@account 
-        %p
-          My current balance: 
-          %strong=@balance
-        %form.form-horizontal{method: :post, action: "/#{@account}/send"}
-          %legend Create a new transaction
-          .form-group
-            %label To
+  .row
+    .col-md-7
+      %h1
+        KafkaBank
+        %small{style:"font-size:40%"}
+          The simple way to send money to anyone
+
+.container
+  .row
+    .col-md-4
+      %h3 Account Summary 
+      %p
+        Logged in as 
+        %strong=@account 
+      %p
+        Current balance
+        %strong=@balance
+      %form.form-horizontal{method: :post, action: "/#{@account}/send"}
+        %legend Create a new transaction
+        .form-group
+          %label.control-label.col-sm-2 To
+          .col-sm-10
             %input.form-control{:placeholder => "Franz", :type => "text", :name => "receiver", :required => ""}/
-          .form-group
-            %label Amount
+        .form-group
+          %label.control-label.col-sm-2 Amount
+          .col-sm-10
             %input.form-control{:placeholder => "10", :type => "number", :name => "amount", :required => ""}/
-          .form-group
-            %label Message
+        .form-group
+          %label.control-label.col-sm-2 Message
+          .col-sm-10
             %input.form-control{:placeholder => "Thanks for the coffee!", :type => "text", :name => "message", :required => ""}/
-          .form-group
-            %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
-
-        %p
-          Banking powered by Apache Kafka
-.container
+        .form-group
+          %input.btn.btn-primary.btn-block{type: :submit, value: "Send"}
+      %p
+        Banking powered by Apache Kafka
