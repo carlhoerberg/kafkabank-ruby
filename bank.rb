@@ -21,7 +21,7 @@ class BankController < Sinatra::Base
 
   get "/:account" do |account|
     @account = account
-    @balance = balance
+    @balance = balance(account)
     #Kafka.stream_messages("balance") do
     #  next if msg[:account] != @account
     #  @balance = msg[:balance]
@@ -42,11 +42,12 @@ class BankController < Sinatra::Base
   end
 
   helpers do
-    def balance
-      resp = Excon.get "https://localhost:3000/balance/#{account}"
+    def balance(account)
+      resp = Excon.get "http://localhost:3000/balance/#{account}"
       data = JSON.parse resp.body
       data["balance"]
-    rescue
+    rescue Excon::Error => e
+      puts e.inspect
       "Balance unknown"
     end
   end
